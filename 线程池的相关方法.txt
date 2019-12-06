@@ -1,0 +1,34 @@
+创建线程池
+  ExecutorService service = Executors.newFixedThreadPool(15);  
+
+创建线程
+
+service.submit(线程类型的引用);
+service.submit(new Productor(queue));
+
+BlockingQueue接口 
+1： 是线程安全的
+2：LinkedBlockingQueue,是其实现类。并且此类实现了Serializable, Iterable<E>, Collection<E>, BlockingQueue<E>, Queue<E>等接口。
+3：其put()方法可以在操作可以成功前，无限期地阻塞当前线程
+4：BlockingQueue 不接受 null 元素。试图 add、put 或 offer 一个 null 元素时，某些实现会抛出 NullPointerException。null 被用作指示 poll 操作失败的警戒值。 
+
+5：BlockingQueue 可以是限定容量的。它在任意给定时间都可以有一个 remainingCapacity，超出此容量，便无法无阻塞地 put 附加元素。
+没有任何内部容量约束的 BlockingQueue 总是报告 Integer.MAX_VALUE 的剩余容量。
+
+5：
+InterruptedException - 如果在等待时被中断 
+ClassCastException - 如果指定元素的类不允许将其添加到此队列 
+NullPointerException - 如果指定元素为 null 
+IllegalArgumentException - 如果指定元素的某些属性不允许将其添加到此队列
+
+
+Lock锁
+Condition 将 Object 监视器方法（wait、notify 和 notifyAll）分解成截然不同的对象，以便通过将这些对象与任意 Lock 实现组合使用，为每个对象提供多个等待 set（wait-set）。其中，Lock 替代了 synchronized 方法和语句的使用，Condition 替代了 Object 监视器方法的使用。 
+
+
+
+ 1： ReentrantLock实现Lock 
+ 2： newCondition()方法 返回绑定到此 Lock 实例的新 Condition 实例
+
+         Lock ll = new ReentrantLock();
+    	  Condition condition = ll.newCondition();
